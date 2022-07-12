@@ -37,7 +37,7 @@ export default {
       password: {
         required,
         maxLengthValue: maxLength(20),
-        minLengthValue: minLength(8),
+        minLengthValue: minLength(4),
       }
     }
   },
@@ -49,6 +49,7 @@ export default {
         .then(() => {
           this.$router.push('/')
           location.reload()
+          this.$store.dispatch('fetchData')
         })
         .catch(err => {
           console.log(err),

@@ -7,7 +7,7 @@
         <select class="form-select" v-model="current_currency">
           <option disabled value="">Выберите валюту</option>
           <option
-            v-for="currency in currencies"
+            v-for="currency in this.$store.getters.getData.currencies"
             v-bind:key="currency.currency_name"
           >
             {{ currency.currency_name }}
@@ -185,12 +185,12 @@ export default {
   name: "Request",
   data() {
     return {
-      countries: [],
-      currencies: [],
-      paymentType: [],
-      cities: [],
-      banks: [],
-      purposes: [],
+      countries: this.$store.getters.getData.countries,
+      currencies: this.$store.getters.getData.currencies,
+      paymentType: this.$store.getters.getData.paymentType,
+      cities: this.$store.getters.getData.cities,
+      banks: this.$store.getters.getData.banks,
+      purposes: this.$store.getters.getData.purposes,
       current_country: "",
       current_city: "",
       current_bank: "",
@@ -283,41 +283,41 @@ export default {
         console.log(error)
       }
     },
-    async getData() {
-      try {
-        const responseCountries = await axios.get(
-          `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/countries`
-        );
-        this.countries = responseCountries.data;
-        const responseCurrencies = await axios.get(
-          `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/currencies`
-        );
-        this.currencies = responseCurrencies.data;
-        const responsePaymentTypes = await axios.get(
-          `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/paymentType`
-        );
-        this.paymentType = responsePaymentTypes.data;
-        const responseCities = await axios.get(
-          `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/cities`
-        );
-        this.cities = responseCities.data;
-        const responseBanks = await axios.get(
-          `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/banks`
-        );
-        this.banks = responseBanks.data;
-        const responsePurposes = await axios.get(
-          `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/purposes`
-        );
-        this.purposes = responsePurposes.data;
-      } catch (error) {
-        console.log(error)
-        alert("Error!");
-      }
-    },
+    // async getData() {
+    //   try {
+    //     const responseCountries = await axios.get(
+    //       `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/countries`
+    //     );
+    //     this.countries = responseCountries.data;
+    //     const responseCurrencies = await axios.get(
+    //       `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/currencies`
+    //     );
+    //     this.currencies = responseCurrencies.data;
+    //     const responsePaymentTypes = await axios.get(
+    //       `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/paymentType`
+    //     );
+    //     this.paymentType = responsePaymentTypes.data;
+    //     const responseCities = await axios.get(
+    //       `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/cities`
+    //     );
+    //     this.cities = responseCities.data;
+    //     const responseBanks = await axios.get(
+    //       `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/banks`
+    //     );
+    //     this.banks = responseBanks.data;
+    //     const responsePurposes = await axios.get(
+    //       `http://${Config.Config.VUE_APP_HOST}:${Config.Config.VUE_APP_PORT}/data/purposes`
+    //     );
+    //     this.purposes = responsePurposes.data;
+    //   } catch (error) {
+    //     console.log(error)
+    //     alert("Error!");
+    //   }
+    // },
   },
-  beforeMount(){
-    this.getData()
-  }
+  // beforeMount(){
+  //   this.getData()
+  // }
 };
 </script>
 
