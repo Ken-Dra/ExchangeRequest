@@ -8,6 +8,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import store from './store/store'
 import Axios from 'axios'
 import Vuelidate from 'vuelidate'
+import vuetify from '../src/plugins/vuetify'
 
 
 Vue.prototype.$http = Axios;
@@ -23,6 +24,7 @@ new Vue({
   el: '#App',
   router,
   store,
+  vuetify,
   components: { App },
   template: '<App/>'
 })

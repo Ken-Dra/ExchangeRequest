@@ -22,6 +22,7 @@
     "vue-quick-chat": "^1.2.8",
     "vue-router": "^3.0.1",
     "vuelidate": "^0.7.7",
+    "vuetify": "^2.6.7",
     "vuex": "^3.6.2"
   },
   "devDependencies": {
