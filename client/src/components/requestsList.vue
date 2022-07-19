@@ -1,60 +1,59 @@
-<template>
-  <v-expansion-panels>
-    <v-expansion-panel
-      v-for="(request, id) in requests"
-      :key="id"
-    >
-      <v-expansion-panel-header class="element-0">
+<!--  <v-expansion-panels>-->
+<!--    <v-expansion-panel-->
+<!--      v-for="(request, id) in requests"-->
+<!--      :key="id"-->
+<!--    >-->
+<!--      <v-expansion-panel-header class="element-0">-->
 
-        <div class="element-1"> {{ request.current_amount }} {{ request.current_currency }} {{
-            request.current_type
-          }}
-        </div>
-        <div class="element-1"> {{ request.wanted_amount }} {{ request.wanted_currency }} {{
-            request.wanted_type
-          }}
-        </div>
+<!--        <div class="element-1"> {{ request.current_amount }} {{ request.current_currency }} {{-->
+<!--            request.current_type-->
+<!--          }}-->
+<!--        </div>-->
+<!--        <div class="element-1"> {{ request.wanted_amount }} {{ request.wanted_currency }} {{-->
+<!--            request.wanted_type-->
+<!--          }}-->
+<!--        </div>-->
 
-      </v-expansion-panel-header>
-      <v-expansion-panel-content>
-        <div class="element-1"><strong> {{ request.id }} </strong></div>
-        <div class="element-2" v-if="isCurrentUser(request.maker_username)"> Создатель заявки: Я</div>
-        <div class="element-2" v-else><strong>Создатель заявки:</strong> {{ request.maker_username }} Рейтинг:
-          {{ request.maker_rank }} <br>ID: {{ request.maker_id }}
-        </div>
+<!--      </v-expansion-panel-header>-->
+<!--      <v-expansion-panel-content>-->
+<div class="element-1"><strong> {{ request.id }} </strong></div>
+<div class="element-2" v-if="isCurrentUser(request.maker_username)"> Создатель заявки: Я</div>
+<div class="element-2" v-else><strong>Создатель заявки:</strong> {{ request.maker_username }} Рейтинг:
+{{ request.maker_rank }} <br>ID: {{ request.maker_id }}
+</div>
 
-        <div class="element-2"><strong> Вы получите: </strong> {{ request.current_amount }} {{
-            request.current_currency
-          }} {{ request.current_type }} {{ request.current_country }} {{ request.current_city }} {{
-            request.current_bank
-          }} {{ request.current_purpose }}
-        </div>
+<!--        <div class="element-2"><strong> Вы получите: </strong> {{ request.current_amount }} {{-->
+<!--            request.current_currency-->
+<!--          }} {{ request.current_type }} {{ request.current_country }} {{ request.current_city }} {{-->
+<!--            request.current_bank-->
+<!--          }} {{ request.current_purpose }}-->
+<!--        </div>-->
 
-        <!--                <div class="element-2"><strong>Вы получите: </strong></div>-->
-        <!--                <div class="element-2"> {{ request.current_amount }} {{ request.current_currency }}</div>-->
-        <!--                <div class="element-2"> {{ request.current_type }}</div>-->
-        <!--                <div class="element-2"> {{ request.current_country }} {{ request.current_city }}</div>-->
-        <!--                <div class="element-2"> {{ request.current_bank }} {{ request.current_purpose }}</div>-->
-        <div class="element-2"><strong> Вы отдаете: </strong> {{ request.wanted_amount }} {{ request.wanted_currency }}
-          {{ request.wanted_type }} {{ request.wanted_country }} {{ request.wanted_city }} {{ request.wanted_bank }}
-          {{ request.wanted_purpose }}
-        </div>
-        <!--                <div class="element-2"> {{ request.wanted_amount }} {{ request.wanted_currency }}</div>-->
-        <!--                <div class="element-2"> {{ request.wanted_type }}</div>-->
-        <!--                <div class="element-2"> {{ request.wanted_country }} {{ request.wanted_city }}</div>-->
-        <!--                <div class="element-2"> {{ request.wanted_bank }} {{ request.wanted_purpose }}</div>-->
-        <div class="element-2"><strong> Профит: </strong> {{ request.profit }}</div>
-        <div class="element-2"> {{ request.created_on.replace(/T/, ' ').slice(0, -7) }}</div>
+<!--        &lt;!&ndash;                <div class="element-2"><strong>Вы получите: </strong></div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.current_amount }} {{ request.current_currency }}</div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.current_type }}</div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.current_country }} {{ request.current_city }}</div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.current_bank }} {{ request.current_purpose }}</div>&ndash;&gt;-->
+<!--        <div class="element-2"><strong> Вы отдаете: </strong> {{ request.wanted_amount }} {{ request.wanted_currency }}-->
+<!--          {{ request.wanted_type }} {{ request.wanted_country }} {{ request.wanted_city }} {{ request.wanted_bank }}-->
+<!--          {{ request.wanted_purpose }}-->
+<!--        </div>-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.wanted_amount }} {{ request.wanted_currency }}</div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.wanted_type }}</div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.wanted_country }} {{ request.wanted_city }}</div>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <div class="element-2"> {{ request.wanted_bank }} {{ request.wanted_purpose }}</div>&ndash;&gt;-->
+<!--        <div class="element-2"><strong> Профит: </strong> {{ request.profit }}</div>-->
+<!--        <div class="element-2"> {{ request.created_on.replace(/T/, ' ').slice(0, -7) }}</div>-->
 
-        <b-button v-if="isNoMaker(request.maker_id)" @click="send(request)" variant="primary">
-          Связаться
-        </b-button>
-        <b-button v-else-if="isLoggedIn" variant="primary" disabled>Моя заявка</b-button>
-        <b-button v-else @click="$router.push('/login')" variant="primary">Войти в аккаунт</b-button>
-      </v-expansion-panel-content>
-    </v-expansion-panel>
-  </v-expansion-panels>
-</template>
+<!--        <b-button v-if="isNoMaker(request.maker_id)" @click="send(request)" variant="primary">-->
+<!--          Связаться-->
+<!--        </b-button>-->
+<!--        <b-button v-else-if="isLoggedIn" variant="primary" disabled>Моя заявка</b-button>-->
+<!--        <b-button v-else @click="$router.push('/login')" variant="primary">Войти в аккаунт</b-button>-->
+<!--      </v-expansion-panel-content>-->
+<!--    </v-expansion-panel>-->
+<!--  </v-expansion-panels>-->
+
 <!--  <div class="root-element">-->
 <!--    <div class="main-element" v-for="request in requests">-->
 <!--      <b-card bg-variant="light" text-variant="black">-->
@@ -90,7 +89,106 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</template>-->
+<template>
+  <v-container fluid>
+      <template>
+        <v-row>
+          <v-col
+            v-for="request in requests"
+            :key="request.id"
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
+          >
+            <v-card>
+              <v-list dense>
+                <v-list-item>
+                  <v-list-item-content>
+                    <strong>{{ request.id }}</strong>
+                  </v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.created_on.replace(/T/, ' ').slice(0, -7) }}
+                  </v-list-item-content>
+                </v-list-item>
 
+                <v-list-item>
+                  <v-list-item-content>Создатель заявки: </v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.maker_username }}
+                  </v-list-item-content>
+
+                </v-list-item>
+
+                <v-list-item>
+                  <v-list-item-content>Рейтинг</v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.maker_rank }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-content>ID</v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.maker_id }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-divider></v-divider>
+                <v-list-item>
+                  <v-list-item-content>Вы отдаете:</v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.wanted_amount }} {{ request.wanted_currency }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                  <v-list-item-content></v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.wanted_type }}
+                  </v-list-item-content>
+                </v-list-item>
+                <v-divider></v-divider>
+                <v-list-item>
+                  <v-list-item-content>Вы получите:</v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.current_amount }} {{ request.current_currency }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                  <v-list-item-content></v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.current_type }}
+                  </v-list-item-content>
+                </v-list-item>
+
+                <v-list-item>
+                  <v-list-item-content>Профит</v-list-item-content>
+                  <v-list-item-content class="align-end">
+                    {{ request.profit }}
+                  </v-list-item-content>
+                </v-list-item>
+
+
+
+
+                <v-list-item>
+                  <v-list-item-content></v-list-item-content>
+                  <v-list-item-content>
+                    <b-button v-if="isNoMaker(request.maker_id)" @click="send(request)" variant="primary">
+                      Связаться
+                    </b-button>
+                    <b-button v-else-if="isLoggedIn" variant="primary" disabled>Моя заявка</b-button>
+                    <b-button v-else @click="$router.push('/login')" variant="primary">Войти в аккаунт</b-button>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+            </v-card>
+          </v-col>
+        </v-row>
+      </template>
+  </v-container>
+</template>
 <script>
 import axios from "axios";
 import Config from '../../envConfig'
@@ -101,6 +199,7 @@ export default {
   data() {
     return {
       requests: [],
+      itemsPerPage: 4,
     }
   },
   computed: {
@@ -208,20 +307,5 @@ export default {
 
 <style scoped>
 
-* {
-  display: flex;
-  flex-direction: column;
-  margin-left: 1%;
-  margin-top: 1%;
-  justify-content: flex-start;
-
-
-}
-
-.element-0 {
-  flex-direction: row;
-}
-.element-1{
-}
 
 </style>
